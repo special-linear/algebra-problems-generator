@@ -1,0 +1,45 @@
+determinant_parametric_basic = [
+    '1&a_1&a_2&\ldots&a_n\\1&a_1+b_1&a_2&\ldots&a_n\\1&a_1&a_2+b_2&\ldots&a_n\\\vdots&\vdots&\vdots&\ddots&\vdots\\1&a_1&a_2&\ldots&a_n',
+    '1&2&2&\ldots&2\\2&2&2&\ldots&2\\2&2&3&\ldots&2\\\vdots&\vdots&\vdots&\ddots&\vdots\\2&2&2&\ldots&n',
+    '1&2&3&\ldots&n-1&n\\1&1&1&\ldots&1&1-n\\1&1&1&\ldots&1-n&1\\\vdots&\vdots&\vdots&\iddots&\vdots\\1&1&1-n&\ldots&1&1\\1&1-n&1&\ldots&1&1',
+    '1&2&3&\ldots&n\\2&3&4&\ldots&1\\3&4&5&\ldots&2\\\vdots&\vdots&\vdots&\iddots&\vdots\\n&1&2&\ldots&n-1',
+    'a&a+h&a+2h&\ldots&a+(n-1)h\\-a&a&0&\ldots&0\\0&-a&a&\ldots&0\\\vdots&\ddots&\ddots&\ddots&\vdots\\0&0&0&\ldots&a',
+    'x&0&\ldots&0&c_n\\-1&x&\ldots&0&c_{n-1}\\\vdots&\ddots&\ddots&\vdots&\vdots\\0&0&\ldots&x&c_2\\0&0&\ldots&-1&x+c_1',
+    '1&b_1&0&0&\ldots&0&0\\-1&1-b_1&b_2&0&\ldots&0&0\\0&-1&1-b_2&b_3&\ldots&0&0\\\vdots&\ddots&\ddots&\ddots&\ddots&\vdots&\vdots\\0&0&0&0&\ldots&1-b_{n-1}&b_n\\0&0&0&0&\ldots&-1&1-b_n',
+    '1-b_1&b_2&0&0&\ldots&0\\-1&1-b_2&b_3&0&\ldots&0\\0&-1&1-b_3&b_4&\ldots&0\\\vdots&\ddots&\ddots&\ddots&\ddots&\ddots\\0&0&0&0&\ldots&1-b_n',
+    'a&ab&0&\ldots&0&0\\1&a+b&ab&\ldots&0&0\\0&1&a+b&\ldots&0&0\\\vdots&\ddots&\ddots&\ddots&\vdots&\vdots\\0&0&0&\ldots&a+b&ab\\0&0&0&\ldots&1&a+b',
+    'a+b&ab&0&\ldots&0&0\\1&a+b&ab&\ldots&0&0\\0&1&a+b&\ldots&0&0\\\vdots&\ddots&\ddots&\ddots&\vdots&\vdots\\0&0&0&\ldots&a+b&ab\\0&0&0&\ldots&1&a+b',
+    'a_1&a_2&a_3&a_4&\ldots&a_n\\-1&2&-1&0&\ldots&0\\0&-1&2&-1&\ldots&0\\\vdots&\ddots&\ddots&\ddots&\ddots&\vdots\\0&0&\ldots&-1&2&-1\\0&0&\ldots&0&-1&2',
+]
+
+determinant_parametric_combinatorial = [
+    '''1 & 1 & \ldots & 1 \\
+\binom{m}{1} & \binom{m+1}{1} & \ldots & \binom{m+n}{1} \\
+\binom{m+1}{2} & \binom{m+2}{2} & \ldots & \binom{m+n+1}{2} \\
+\vdots & \vdots & \ddots & \vdots \\
+\binom{m+n+1}{n} & \binom{m+n}{n} & \ldots & \binom{m+2n-1}{n}''',
+    '''1 & 1 & 0 & 0 & \ldots & 0 \\
+1 & \binom{2}{1} & \binom{2}{2} & 0 & \ldots & 0 \\
+1 & \binom{3}{1} & \binom{3}{2} & \binom{3}{3} & \ldots & 0 \\
+\vdots & \vdots & \vdots & \vdots & \ddots & \vdots \\
+1 & \binom{n}{1} & \binom{n}{2} & \binom{n}{3} & \ldots & \binom{n}{n-1}''',
+    '''\binom{m}{k} & \binom{m}{k+1} & \ldots & \binom{m}{k+n} \\
+\binom{m+1}{k} & \binom{m+1}{k+1} & \ldots & \binom{m+1}{k+n} \\
+\vdots & \vdots & \ddots & \vdots \\
+\binom{m+n}{k} & \binom{m+n}{k+1} & \ldots & \binom{m+n}{k+n}''',
+    '''\binom{k+m}{m} & \binom{k+m+1}{m} & \ldots & \binom{k+2m}{m} \\
+\binom{k+m+1}{m} & \binom{k+m+2}{m} & \ldots & \binom{k+2m+1}{m} \\
+\vdots & \vdots & \ddots & \vdots \\
+\binom{k+2m}{m} & \binom{k+2m+1}{m} & \ldots & \binom{k+3m}{m}''',
+    '''1 & \binom{n}{1} & \binom{n}{2} & \ldots & \binom{n}{n} \\
+1 & \binom{n+1}{1} & \binom{n+1}{2} & \ldots & \binom{n+1}{n} \\
+1 & \binom{n+2}{1} & \binom{n+2}{2} & \ldots & \binom{n+2}{2} \\
+\vdots & \vdots & \vdots & \ddots & \vdots \\
+1 & \binom{2n}{1} & \binom{2n}{2} & \ldots & \binom{2n}{n}''',
+    '''1 & \binom{2}{2} & 0 & 0 & \ldots & 0 \\
+1 & \binom{3}{2} & \binom{3}{3} & 0 & \ldots & 0 \\
+1 & \binom{4}{2} & \binom{4}{3} & \binom{4}{4} & \ldots & 0 \\
+\vdots & \vdots & \vdots & \vdots & \ddots & \vdots \\
+1 & \binom{n}{2} & \binom{n}{3} & \binom{n}{4} & \ldots & \binom{n}{n} \\
+1 & \binom{n+1}{2} & \binom{n+1}{3} & \binom{n+1}{4} & \ldots & \binom{n+1}{n}''',
+]
