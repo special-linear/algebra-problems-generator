@@ -1,0 +1,165 @@
+#main-div {
+    /*margin: 10px;*/
+    /*padding: 10px;*/
+    /*border: solid gray 1px;*/
+}
+
+.generator-block {
+    border: 1px solid darkgray;
+    margin: 10px;
+    padding: 10px;
+}
+
+#problems-table {
+    border: solid darkgray 1px;
+    border-collapse: collapse;
+    padding: 0px;
+}
+
+#problems-table thead {
+    border-bottom: 1px solid darkgray;
+}
+
+#problems-table th {
+    text-align: left;
+}
+
+tbody tr:nth-child(odd) {
+    background-color: #f0f0f0;
+}
+
+tbody tr:nth-child(even) {
+    background-color: white;
+}
+
+#new-variant-row {
+    background-color: white;
+    border-top: 2px solid lightgray;
+}
+
+#problems-table td + td {
+    border-left: 1px solid lightgray;
+}
+
+#problems-table th + td {
+    border-left: 1px solid lightgray;
+}
+
+th, td {
+    padding: 0;
+}
+
+#variants-header {
+    padding: 5px;
+}
+
+.variant-name-cell {
+    position: relative;
+}
+
+.variant-name {
+    float: left;
+    margin: 5px;
+}
+
+.variant-delete-button {
+    position: absolute;
+    right: 0;
+    margin: 0;
+    padding: 0;
+    border: 1px solid gray;
+    border-radius: 5px;
+    background-color: rgba(211, 211, 211, 0.5);
+    visibility: hidden;
+}
+
+.variant-name-cell:hover .variant-delete-button {
+    visibility: visible;
+}
+
+.variant-delete-button:hover {
+    background-color: rgba(211, 211, 211, 1);
+    border-color: dimgray;
+    cursor: pointer;
+}
+
+button.variant-all, button.variant-none {
+    font-size: smaller;
+    padding: 1px;
+    margin: 0 0 0 5px;
+    width: 21px;
+    height: 21px;
+}
+
+#new-problem {
+    width: 150px;
+    margin: 5px;
+}
+
+#new-problem option:disabled {
+    visibility: visible;
+}
+
+.problem-cell {
+    font-size: smaller;
+    position: relative;
+}
+
+.problem-name {
+    float: left;
+    margin: 5px;
+}
+
+.problem-delete-button {
+    position: absolute;
+    right: 0;
+    margin: 0;
+    padding: 0;
+    border: 1px solid gray;
+    border-radius: 5px;
+    background-color: rgba(211, 211, 211, 0.5);
+    visibility: hidden;
+}
+
+.problem-cell:hover .problem-delete-button {
+    visibility: visible;
+}
+
+.problem-delete-button:hover {
+    background-color: rgba(211, 211, 211, 1);
+    border-color: dimgray;
+    cursor: pointer;
+}
+
+.setting-name, input.settings {
+    margin: 0 5px;
+}
+
+input.settings {
+    
+}
+
+#generator-button #generator-stop-button {
+    margin: 10px;
+}
+
+#generator-stop-button:disabled {
+    visibility: hidden;
+}
+
+#generator-updates {
+    margin: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+    /*border: 1px solid lightgray;*/
+}
+
+#generator-output {
+    border: 1px solid gray;
+    padding: 10px;
+    overflow: auto;
+    box-sizing: border-box;
+    width: 100%;
+    resize: vertical;
+    min-height: 150px;
+}

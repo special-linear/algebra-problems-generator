@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Algebra problem generator</title>
+    <link rel="icon" href="data:,">
+</head>
+<body>
+    <script src="{{ url_for('static', filename='jquery-3.6.3.js') }}"></script>
+    <script src="{{ url_for('static', filename='web.js') }}"></script>
+    <link href="{{ url_for('static', filename='web.css') }}" rel="stylesheet" type="text/css">
+
+<div id="main-div">
+    <fieldset id="problems-block" class="generator-block">
+        <legend>Problems</legend>
+        <table id="problems-table">
+        <thead>
+        <tr>
+            <th id="variants-header">Variants</th>
+            <td id="new-problem-cell" class="row-last-cell">
+                <select id="new-problem">
+                    <option value="0" selected disabled>Choose a problem...</option>
+                    {% for topic in problem_types %}
+                    <optgroup label="{{topic}}">
+                        {% for pt in problem_types[topic] %}
+                        <option value="{{pt}}" data-problem="{{pt}}">{{pt}}</option>
+                        {% endfor %}
+                    </optgroup>
+                    {% endfor %}
+                </select>
+            </td>
+        </tr>
+        </thead>
+        <tbody>
+        <tr id="new-variant-row">
+            <th><input id="new-variant" type="text" placeholder="Variant"></th>
+            <td class="variant-row-last-cell"></td>
+        </tr>
+        </tbody>
+    </table>
+    </fieldset>
+    <fieldset class="generator-block">
+        <legend>Settings</legend>
+        <span class="setting-name">Numbering:</span>
+        <select class="settings">
+            <option selected>manual</option>
+            <option disabled>auto</option>
+        </select>
+        <span class="setting-name">Separator:</span>
+        <input class="settings" type="text" value="\clearpage">
+        <span class="setting-name">TOC:</span>
+        <input class="settings" type="checkbox" checked>
+    </fieldset>
+    <fieldset class="generator-block">
+        <button id="generator-button">Generate</button>
+        <button id="generator-stop-button" disabled>Stop</button>
+        <span id="generator-updates"></span>
+        <textarea id="generator-output" readonly></textarea>
+    </fieldset>
+
+</div>
+
+</body>
+</html>
