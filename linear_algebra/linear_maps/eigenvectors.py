@@ -1,7 +1,6 @@
 from problem import Problem
 from linear_algebra.common import *
 import numpy as np
-from random import choice
 import itertools
 
 
@@ -18,7 +17,7 @@ class Eigenvectors(Problem):
         d = np.matrix(np.diag([0,0,1,1]))
         m = np.matrix(np.zeros((4, 4)), dtype=int)
         while 0 in list(itertools.chain.from_iterable(m.tolist())):
-            c = gen_glnz_matrix(4, entries_lim)
-            ci = np.rint(np.linalg.inv(c)).astype(int)
-            m =c*d*ci
+            c = gen_glnz_matrix2(4, entries_lim)
+            ci = c.inv()
+            m = c * d * ci
         return m
