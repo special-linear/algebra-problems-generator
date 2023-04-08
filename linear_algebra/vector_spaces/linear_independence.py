@@ -59,9 +59,9 @@ class LinearIndependencePolyTrigExp(Problem):
         self.basis, self.coeffs = self.gen_linearly_independend_poly_trig_exp()
 
     def render(self):
-        return 'Докажите линейную независимость набора функций\n\\begin{{align}} {}. \\end{{align}}'.format(
+        return 'Докажите линейную независимость набора функций\n\\begin{{align*}} {}. \\end{{align*}}'.format(
             ' \\\\ '.join(
-                '& f_{{{}}} = '.format(i)
+                '& f_{{{}}} = '.format(i + 1)
                 + ''.join(
                     '{}{}'.format(
                         '{:+}'.format(c) if c not in (1, -1) else '-' if c == -1 else '+',
