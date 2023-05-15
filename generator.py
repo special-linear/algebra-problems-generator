@@ -8,6 +8,7 @@ from updates_handler import ConsoleUpdatesHandler
 import numbertheory
 import complex
 import polynomial
+import polynomial.multivar
 import linear_algebra.matrices
 import linear_algebra.vector_spaces
 import linear_algebra.linear_maps
@@ -19,6 +20,7 @@ topics = {
     'numbertheory': numbertheory,
     'complex': complex,
     'polynomial': polynomial,
+    'polynomial:multivar': polynomial.multivar,
     'linalg:matrices': linear_algebra.matrices,
     'linalg:vectorspaces': linear_algebra.vector_spaces,
     'linalg:linearmaps': linear_algebra.linear_maps,
