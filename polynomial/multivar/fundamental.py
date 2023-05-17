@@ -1,6 +1,6 @@
 from problem import Problem
 from random import choices
-from common import monomial_to_tex
+from .common import monomial_to_tex
 
 
 class SymmetricPolynomialRewrite(Problem):
