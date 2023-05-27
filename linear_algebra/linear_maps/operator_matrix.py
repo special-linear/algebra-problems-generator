@@ -1,6 +1,7 @@
 import random
 
 import numpy as np
+import sympy as sp
 
 from linear_algebra.common import *
 from numbertheory.gaussint import GaussInt
@@ -86,12 +87,12 @@ class OperatorMatrixSkewSymmConjByOrth(Problem):
 
     @staticmethod
     def gen_skewsymm_conj_by_orth():
-        ssm1 = np.matrix([[0, 1, 0], [-1, 0, 0], [0, 0, 0]], dtype=int)
-        ssm2 = np.matrix([[0, 0, 1], [0, 0, 0], [-1, 0, 0]], dtype=int)
-        ssm3 = np.matrix([[0, 0, 0], [0, 0, 1], [0, -1, 0]], dtype=int)
+        ssm1 = sp.Matrix([[0, 1, 0], [-1, 0, 0], [0, 0, 0]])
+        ssm2 = sp.Matrix([[0, 0, 1], [0, 0, 0], [-1, 0, 0]])
+        ssm3 = sp.Matrix([[0, 0, 0], [0, 0, 1], [0, -1, 0]])
         ssms = (ssm1, ssm2, ssm3)
-        c = gen_glnz_matrix(3, entries_lim=4)
-        basis = tuple(sum(c[i, j]*ssms[j] for j in range(3)) for i in range(3))
+        c = gen_glnz_matrix2(3, entries_lim=4)
+        basis = tuple(sum((c[i, j] * ssms[j] for j in range(3)), start=sp.zeros(3)) for i in range(3))
         b = list(map(lambda r: list(map(str, r)), [[1, 0, 0], [0, 1, 0], [0, 0, 1]]))
         i, j, k = random.sample((0, 1, 2), 3)
         b[i][i] = '\\nicefrac{3}{5}'
@@ -120,12 +121,12 @@ class OperatorMatrixTracelessAdjDer(Problem):
 
     @staticmethod
     def gen_traceless_adj_der():
-        ssm1 = np.matrix([[0, 1], [0, 0]], dtype=int)
-        ssm2 = np.matrix([[0, 0], [1, 0]], dtype=int)
-        ssm3 = np.matrix([[1, 0], [0, -1]], dtype=int)
+        ssm1 = sp.Matrix([[0, 1], [0, 0]])
+        ssm2 = sp.Matrix([[0, 0], [1, 0]])
+        ssm3 = sp.Matrix([[1, 0], [0, -1]])
         ssms = (ssm1, ssm2, ssm3)
-        c = gen_glnz_matrix(3, entries_lim=4)
-        basis = tuple(sum(c[i, j] * ssms[j] for j in range(3)) for i in range(3))
+        c = gen_glnz_matrix2(3, entries_lim=4)
+        basis = tuple(sum((c[i, j] * ssms[j] for j in range(3)), start=sp.zeros(2)) for i in range(3))
         b = [[str(random.choice((-2, -1, 1, 2))) for j in range(2)] for i in range(2)]
         return b, basis
 
@@ -149,7 +150,7 @@ class OperatorMatrixSkewHermConjByUnitary(Problem):
 
     @staticmethod
     def gen_skewsymm_conj_by_orth():
-        c = gen_glnz_matrix(4, entries_lim=5).tolist()
+        c = gen_glnz_matrix2(4, entries_lim=5).tolist()
         b = random.choice([[['\\nicefrac{3i}{5}', '\\nicefrac{-4i}{5}'], ['\\nicefrac{4i}{5}', '\\nicefrac{3i}{5}']],
                            [['\\nicefrac{4i}{5}', '\\nicefrac{3i}{5}'], ['\\nicefrac{-3i}{5}', '\\nicefrac{4i}{5}']]])
         return b, c
@@ -176,5 +177,5 @@ class OperatorMatrixMatMulComplexConj(Problem):
     @staticmethod
     def gen_mat_mul_complex_conj():
         b = [[random.randint(-4, 4) for _ in range(2)] for __ in range(2)]
-        c = gen_glnz_matrix(4, entries_lim=5).tolist()
+        c = gen_glnz_matrix2(4, entries_lim=5).tolist()
         return b, c
