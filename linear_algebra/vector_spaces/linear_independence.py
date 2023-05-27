@@ -8,6 +8,7 @@ from functools import total_ordering
 from fractions import Fraction
 from linear_algebra.common import *
 from random import sample, randint
+from os.path import join, dirname
 
 
 class GeneratingSubset(Problem):
@@ -55,6 +56,10 @@ class LinearIndependenceFunctions(FromListProblem):
         'функций $f_i=a_i+\\chi_{[c_i,+\\infty)}$, где $\\chi_A$ это характеристическая функция множества $A$, '
         'линейно независим в пространстве функций на $\\mathbb{R}$.',
     ]
+
+
+class LinearIndependenceShifts(FromListProblem):
+    problems_source = (join(dirname(__file__), 'linear_independence.toml'), 'shifts')
 
 
 class LinearIndependencePolyTrigExp(Problem):

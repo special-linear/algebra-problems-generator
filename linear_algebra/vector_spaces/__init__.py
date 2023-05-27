@@ -1,4 +1,5 @@
-from .linear_independence import LinearIndependenceFunctions, LinearIndependencePolyTrigExp
+from .linear_independence import LinearIndependenceFunctions, LinearIndependenceShifts
+from .linear_independence import LinearIndependencePolyTrigExp, LinearIndependencePiecewiseAffine
 from .basis_choice import BasisChoicePolynomials, BasisChoiceAntisymmComplexMatrices
 from .quotient_space import QuotientSpaceBasis
 from .subspaces import SumIntersectionZpZ, SumIntersection3
