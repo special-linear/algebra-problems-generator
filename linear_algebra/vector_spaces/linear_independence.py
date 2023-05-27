@@ -3,8 +3,11 @@ from list_problem import FromListProblem
 import sympy as sp
 import itertools as it
 import more_itertools as mit
+from bisect import bisect_right
+from functools import total_ordering
+from fractions import Fraction
 from linear_algebra.common import *
-from random import sample
+from random import sample, randint
 
 
 class GeneratingSubset(Problem):
@@ -93,6 +96,58 @@ class LinearIndependencePolyTrigExp(Problem):
             row /= sp.gcd_list(list(row))
             coeffs[i,:] = row
         return tuple(basis), tuple(tuple(map(int, coeffs.row(i))) for i in range(dim))
+
+
+@total_ordering
+class PiecewiseAffineFunction:
+    def __init__(self, nodes):
+        self.xs, self.vs = zip(*sorted(nodes))
+
+    def __eq__(self, other):
+        return self.xs == other.xs and self.vs == other.vs
+
+    def __lt__(self, other):
+        return self.xs < other.xs or (self.xs == other.xs and self.vs < other.vs)
+
+    def __str__(self):
+        return ', '.join(map(str, zip(self.xs, self.vs)))
+
+    def __call__(self, x):
+        i = bisect_right(self.xs, x)
+        if x == self.xs[i]:
+            return self.vs[i]
+        x1, x2 = self.xs[i-1:i + 1]
+        v1, v2 = self.vs[i-1:i + 1]
+        return Fraction((v2 - v1) * x + v1 * x2 - v2 * x1, x2 - x1)
+
+
+class LinearIndependencePiecewiseAffine(Problem):
+    def __init__(self):
+        self.limits, self.funcs = self.gen_linearly_independent_piecewise_affine()
+
+    def render(self):
+        return 'Непрерывная кусочно-аффинная функция с узлами $(a_i,b_i)$ определяется как непрерывная функция $f$, ' \
+               'принимающая значения $f(a_i)=b_i$ и аффинная на интервалах между соседними значениями $a_i$.\n' \
+               'На отрезке $[0,{}]$ рассматриваются непрерывные кусочно-аффинные функции со следующими узлами:\n' \
+               '\\begin{{align*}} {} \\end{{align*}}.\n' \
+               'Выберите в этом наборе функций максимальный линейно независимый поднабор'.format(
+            self.limits,
+            ' \\\\ '.join('f_{{{}}} : && {}'.format(i + 1, f) for i, f in enumerate(self.funcs))
+        )
+
+    @staticmethod
+    def gen_linearly_independent_piecewise_affine():
+        limits = 5
+        num_points = 4
+        num_functions = 5
+        a = sp.zeros(num_functions)
+        while a.rank() != num_functions:
+            xs_lists = [[0] + sample(range(1, limits), k=num_points - 2) + [limits] for _ in range(num_functions)]
+            nodes_lists = [[(x, randint(0, limits)) for x in xs] for xs in xs_lists]
+            funcs = [PiecewiseAffineFunction(nodes) for nodes in nodes_lists]
+            entries = [[f(i) for f in funcs] for i in range(5)]
+            a = sp.Matrix(entries)
+        return limits, sorted(funcs)
 
 
 def ordered_sample(population, k):
